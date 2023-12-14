@@ -10,7 +10,7 @@ const userRoutes = require('./routes/user')
 
 mongoose.connect(process.env.DB_CONNECTION)
   .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch((error) => console.log('Connexion à MongoDB échouée !' + error));
+  .catch((error) => console.log('Connexion à MongoDB échouée !\n' + error));
 
 app.use(express.json());
 

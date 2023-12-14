@@ -3,13 +3,13 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken')
 
 exports.create = async (req, res, next) => {
-
     try {
-        if (req.body.username == undefined) {
+        if (req.body.username == undefined || req.body.password == undefined || req.body.confirmpassword == undefined || req.body.email == undefined || req.body.role == undefined) {
             return res.status(400).json({ message: 'Merci de renseigner les paramètres nécessaires.'});
         } else {
             username = req.body.username
-
+            email = req.body.email
+            role = req.body.role
         }
 
         const validUsernameRegex = /^[a-zA-Z0-9]+$/; // Check that username contains only alphanumerics
@@ -35,10 +35,11 @@ exports.create = async (req, res, next) => {
             });
 
         } else {
-            const tempPass = 'RandomString1234' // Don't change for the moment
+            const tempPass = 'admin' // Don't change for the moment
             const user = new User({
                 username: username,
                 password: await bcrypt.hash(tempPass, 10),
+                email: email,
                 isTempPassword: true,
                 role: role
             });
