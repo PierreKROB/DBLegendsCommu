@@ -6,8 +6,11 @@ import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme';
 
 import Home from './pages/Home';
+import Login from './pages/Login';
+
 import Header from './layout/Header';
 import Error from './layout/Error';
+
 
 
 ReactDOM.render(
@@ -18,6 +21,7 @@ ReactDOM.render(
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>
